@@ -31,7 +31,7 @@ export default function Navbar() {
 
             {user && (
                 <>
-                <li>hello, {user.displayName}</li>
+                <li className={styles.welcome}>hello, {user.displayName}</li>
             <li>
                 <button onClick={logout}className='btn'>Logout</button>
             </li>

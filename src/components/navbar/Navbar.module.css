@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+.navbar ul li {
+    padding: 0.5rem;
+}
+
 .title {
     margin-right: auto;
     font-weight: bold;
@@ -26,6 +30,13 @@
 .navbar a {
     color: #333;
     text-decoration: none;
+}
+
+.welcome {
+    font-weight: 400;
+    font-style: italic;
+    color: #121221;
+    text-shadow: 0 0 4px rgba(0,0,0,0.315);
 }
 
 
