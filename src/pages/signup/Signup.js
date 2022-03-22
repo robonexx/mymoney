@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSignup } from '../../hooks/useSignup';
+import { Link } from 'react-router-dom'
 // styles
 import styles from './Signup.module.css';
 
@@ -50,6 +51,8 @@ export default function Signup() {
             value={displayName}
             required
           />
+
+        <p>Already have and account? Please <Link to="/login">Login</Link></p><br/>
         </label>
         {!isPending && <button className='btn'>Signup</button>}
         {isPending && (

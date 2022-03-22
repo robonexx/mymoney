@@ -41,7 +41,7 @@ export default function Login() {
             required
           />
         </label>
-        <p>Don´t have and account? Please <Link to="/signup">Sign up</Link></p><br/>
+        <p>Don´t have and account? Please <Link to="/signup">Signup</Link></p><br/>
 
         {!isPending && <button className='btn'>Login</button>}
         {isPending && <button className='btn' disabled>Loading</button>}
