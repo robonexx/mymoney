@@ -1,5 +1,5 @@
 import { useReducer, useState, useEffect } from 'react';
-import { projectFirestore } from '../firebase/config';
+import { db } from '../firebase/config';
 
 let initialState = {
   document: null,
@@ -42,7 +42,7 @@ export const useFirestore = (collection) => {
   // used for claen up function
   const [isCancelled, setIsCancelled] = useState(false);
   //collection ref
-  const ref = projectFirestore.collection(collection);
+  const ref = db.collection(collection);
 
   // only dispatch if not cancelled
   const dispatchIfNotCancelled = (action) => {
