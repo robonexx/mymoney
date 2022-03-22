@@ -1,22 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { db } from '../firebase/config';
 
-import { collection, onSnapshot } from 'firebase/firestore';
-
-export const useCollection = (c) => {
+export const useCollection = (c, _query, _orderBy) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
+
+  // use ref to not get a infinite loop in useEffect
+  // _query is an array and is "different" on every function call
+  const q = useRef(_query).current;
+  const orderBy = useRef(_orderBy).current;
 
   useEffect(() => {
     let ref = db.collection(c);
 
-    // using the onsnapshot function taking in the ref and then the snapshot object
-    // anytime the db changes we get the new snapshot
-    // then cycling thru the documents, then adding the new data to the collection
-    const unsub = ref.onSnapshot(
+    if (q) {
+      ref = ref.where(...q);
+    }
+    if (orderBy) {
+      ref = ref.orderBy(...orderBy);
+    }
+
+    const unsubscribe = ref.onSnapshot(
       (snapshot) => {
         let results = [];
         snapshot.docs.forEach((doc) => {
+          console.log(doc);
           results.push({ ...doc.data(), id: doc.id });
         });
 
@@ -26,13 +34,13 @@ export const useCollection = (c) => {
       },
       (error) => {
         console.log(error);
-        setError('Could not fetch data');
+        setError('could not fetch the data');
       }
     );
 
-    // unsub on unmount
-    return () => unsub();
-  }, [c]);
+    // unsubscribe on unmount
+    return () => unsubscribe();
+  }, [c, q, orderBy]);
 
   return { documents, error };
 };
