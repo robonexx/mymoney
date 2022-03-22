@@ -5,11 +5,11 @@ import 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
-  authDomain: 'fire-collection.firebaseapp.com',
-  projectId: 'fire-collection',
-  storageBucket: 'fire-collection.appspot.com',
-  messagingSenderId: '739587217079',
-  appId: '1:739587217079:web:f0fe5461be539298f8df32',
+  authDomain: 'my-money-95a5c.firebaseapp.com',
+  projectId: 'my-money-95a5c',
+  storageBucket: 'my-money-95a5c.appspot.com',
+  messagingSenderId: '610303523893',
+  appId: '1:610303523893:web:4bd1a9550e34e44bedc57c',
 };
 
 // init firebase
@@ -22,4 +22,6 @@ const db = firebase.firestore();
 // auth
 const userAuth = firebase.auth();
 
-export { db, userAuth };
+const timestamp = firebase.firestore.Timestamp;
+
+export { db, userAuth, timestamp };
